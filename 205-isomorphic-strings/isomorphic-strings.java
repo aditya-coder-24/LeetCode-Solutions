@@ -1,0 +1,26 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        int[] mapST = new int[256];
+        int[] mapTS = new int[256];
+
+        for (int i = 0; i < s.length(); i++) {
+            char a = s.charAt(i);
+            char b = t.charAt(i);
+
+            // Existing mapping s -> t
+            if (mapST[a] != 0 && mapST[a] != b) {
+                return false;
+            }
+
+            // Existing mapping t -> s
+            if (mapTS[b] != 0 && mapTS[b] != a) {
+                return false;
+            }
+
+            mapST[a] = b;
+            mapTS[b] = a;
+        }
+
+        return true;
+    }
+}
